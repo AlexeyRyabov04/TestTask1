@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="TestTask1.Views.TaskView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestTask1.Views" xmlns:viewmodels="clr-namespace:TestTask1.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:TaskViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="900">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0 15" HorizontalAlignment="Center">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Width="200" TextAlignment="Center" Text="Путь к директории:"/>
+            <TextBox Grid.Column="1" Width="500" Margin="10 0 20 0" Text="{Binding GeneratePath, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Grid.Column="2" Width="130" Content="Сгенерировать" Command="{Binding GenerateCommand}"/>
+            
+        </Grid>
+        
+        <Grid Grid.Row="1" Margin="0 15" HorizontalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Width="200" TextAlignment="Center" Text="Путь для сохранения:"/>
+                <TextBox Grid.Column="1" Width="500" Margin="10 0 20 0" Text="{Binding SavePath, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="2"  Width="130" Content="Объединить" Command="{Binding MergeCommand}"/>
+            </Grid>
+            <Grid Grid.Row="1" Margin="0 15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Width="200" TextAlignment="Center" Text="Строка для удаления:"/>
+                <TextBox Grid.Column="1" Width="150" Margin="10 0" Text="{Binding DeleteString, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0 10" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Путь к файлу:"/>
+                <TextBox Grid.Column="1" Margin="10 0" Width="300" Text="{Binding ExportFilePath, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Grid.Row="1" Margin="0 15">
+                <Button Grid.Column="2"  Width="500" Content="Сохранить в СУБД" Command="{Binding ImportCommand}"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Импортировано:"/>
+                <TextBlock Grid.Column="1" Margin="10 0" Text="{Binding StringsImported}"/>
+            </Grid>
+            <Grid Grid.Row="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Осталось:"/>
+                <TextBlock Grid.Column="1" Margin="10 0" Text="{Binding StringsLeft}"/>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="3" Margin="0 10" HorizontalAlignment="Center">
+            <Button Grid.Column="2"  Width="500" Content="Вычислить сумму целых и медиану дробных" Command="{Binding CalculateSumAndMedianCommand}"/>
+        </Grid>
+        
+    </Grid>
+</UserControl>
